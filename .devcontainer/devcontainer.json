@@ -12,6 +12,10 @@
 
 	"workspaceFolder": "/space",
 
+	"runArgs": [
+        "--gpus", "all"
+    ],
+
 	// "mounts": [
 	// 	"source=/home/tkcoulte,target=/workspace,type=bind,consistency=cached"
 	// ],
