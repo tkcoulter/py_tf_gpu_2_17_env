@@ -10,18 +10,22 @@ def create_lstm_model(input_shape, output_shape):
     
     # Add masking layer to handle padding (-1 values)
     masked = Masking(mask_value=-1.0)(inputs)
-    
-    x = Bidirectional(LSTM(64, return_sequences=True))(masked)
+
+    x = Bidirectional(LSTM(128, return_sequences=True))(masked)
     x = BatchNormalization()(x)
-    x = Dropout(0.3)(x)
+    x = Dropout(0.1)(x)
+    
+    x = Bidirectional(LSTM(64, return_sequences=True))(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.1)(x)
     
     x = Bidirectional(LSTM(32, return_sequences=True))(x)
     x = BatchNormalization()(x)
-    x = Dropout(0.3)(x)
+    x = Dropout(0.1)(x)
     
     x = Bidirectional(LSTM(16))(x)
     x = BatchNormalization()(x)
-    x = Dropout(0.3)(x)
+    x = Dropout(0.1)(x)
     
     x = Dense(32, activation='relu')(x)
     x = BatchNormalization()(x)
@@ -32,7 +36,7 @@ def create_lstm_model(input_shape, output_shape):
     model = Model(inputs=inputs, outputs=outputs)
     return model
 
-def train_lstm_model(X_train, y_train, X_val, y_val, epochs=50, batch_size=1):
+def train_lstm_model(X_train, y_train, X_val, y_val, epochs=1000, batch_size=256):
     # Convert lists to numpy arrays and get shapes
     X_train = np.array(X_train)
     y_train = np.array(y_train)

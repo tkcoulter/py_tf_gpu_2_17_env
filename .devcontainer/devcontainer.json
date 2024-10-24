@@ -61,7 +61,9 @@
 				"ms-toolsai.jupyter-renderers",
 				"ms-toolsai.vscode-jupyter-slideshow",
 				"ms-toolsai.tensorboard",
-				"charliermarsh.ruff"
+				"charliermarsh.ruff",
+				"saoudrizwan.claude-dev",
+				"MattFlower.aider"
 			]
 		}
 	},
